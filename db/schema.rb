@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121220205524) do
+ActiveRecord::Schema.define(:version => 20121221132810) do
 
   create_table "chapters", :force => true do |t|
     t.string   "title"
     t.integer  "order"
     t.integer  "page_count"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.text     "description"
   end
 
   create_table "pages", :force => true do |t|
