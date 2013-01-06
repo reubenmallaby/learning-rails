@@ -17,7 +17,7 @@
 
 
   %body
-    .navbar.navbar-fluid-top
+    .navbar.navbar-fluid-top.navbar-fixed-top
       .navbar-inner
         .container-fluid
           %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
@@ -27,15 +27,42 @@
           = link_to "Learning Rails", root_path, :class => "brand"
           .container.nav-collapse
             %ul.nav
-              %li= link_to "Chapters", chapters_path
+              %li.dropdown
+                %a.dropdown-toggle{:href => "#", :"data-toggle" => "dropdown"}
+                  Chapters
+                  %b.caret
+                %ul.dropdown-menu
+                  - Chapter.all.each do |chapter|
+                    %li= link_to chapter.title, chapter_pages_path(chapter)
+              %li= link_to "Blog", posts_path
               %li= link_to "About", "about"
+            %ul.nav.pull-right
+              %li
+                = link_to "Sign in", sign_in_path unless signed_in?
+                = link_to 'Sign out', sign_out_path, method: :delete if signed_in?
+      = yield :breadcrumbs
 
-    .container-fluid
-
+    #content.container-fluid
       .row-fluid
-        .span12
-          = yield
-    
+        - if params[:controller] == "pages"
+          .span2.bs-docs-sidebar
+            %ul.nav.nav-list.bs-docs-sidenav.affix
+              - @chapter.pages.each do |page|
+                %li
+                  - if page == @page
+                    = link_to page.title, "#", :class => "btn-primary"
+                  - else
+                    = link_to chapter_page_path(@chapter, page) do
+                      = page.title
+                      %i.icon-chevron-right
+          .span10
+            = bootstrap_flash
+            = yield
+        - else
+          .span12
+            = bootstrap_flash
+            = yield
+
       %footer
         %p &copy; Reuben Mallaby 2012
     /

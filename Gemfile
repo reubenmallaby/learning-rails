@@ -25,3 +25,6 @@ gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootst
 gem 'bootstrap-will_paginate'
 gem 'thin'
 
+gem 'RedCloth'
+gem 'clearance'
+

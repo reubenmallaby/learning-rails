@@ -78,7 +78,7 @@ class PagesController < ApplicationController
     @page.destroy
 
     respond_to do |format|
-      format.html { redirect_to chapter_page_url(@chapter, @page) }
+      format.html { redirect_to chapter_pages_url(@chapter), notice: "Page removed" }
       format.json { head :no_content }
     end
   end
