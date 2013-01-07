@@ -21,7 +21,7 @@ gem 'haml'
 gem 'haml-rails'
 gem "paperclip", "~> 3.0"
 gem 'less-rails'
-gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git"
+gem 'twitter-bootstrap-rails', :git => "https://github.com/seyhunak/twitter-bootstrap-rails.git"
 gem 'bootstrap-will_paginate'
 gem 'thin'
 
